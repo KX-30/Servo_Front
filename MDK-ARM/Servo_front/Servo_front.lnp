@@ -1,0 +1,28 @@
+--cpu=Cortex-M4.fp.sp
+"servo_front\startup_stm32f407xx.o"
+"servo_front\main.o"
+"servo_front\gpio.o"
+"servo_front\tim.o"
+"servo_front\stm32f4xx_it.o"
+"servo_front\stm32f4xx_hal_msp.o"
+"servo_front\stm32f4xx_hal_tim.o"
+"servo_front\stm32f4xx_hal_tim_ex.o"
+"servo_front\stm32f4xx_hal_rcc.o"
+"servo_front\stm32f4xx_hal_rcc_ex.o"
+"servo_front\stm32f4xx_hal_flash.o"
+"servo_front\stm32f4xx_hal_flash_ex.o"
+"servo_front\stm32f4xx_hal_flash_ramfunc.o"
+"servo_front\stm32f4xx_hal_gpio.o"
+"servo_front\stm32f4xx_hal_dma_ex.o"
+"servo_front\stm32f4xx_hal_dma.o"
+"servo_front\stm32f4xx_hal_pwr.o"
+"servo_front\stm32f4xx_hal_pwr_ex.o"
+"servo_front\stm32f4xx_hal_cortex.o"
+"servo_front\stm32f4xx_hal.o"
+"servo_front\stm32f4xx_hal_exti.o"
+"servo_front\system_stm32f4xx.o"
+"servo_front\servo_front.o"
+--strict --scatter "Servo_front\Servo_front.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "Servo_front.map" -o Servo_front\Servo_front.axf
