@@ -18,12 +18,15 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "dma.h"
 #include "tim.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "Servo_front.h"
+#include "Serial.h"
 
 /* USER CODE END Includes */
 
@@ -39,12 +42,16 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
+//void Serial_Init(UART_HandleTypeDef *huart, uint8_t *DstAddress, uint8_t *SecondMemAddress, uint32_t DataLength);
 
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+volatile uint8_t control_rx_buf[2][RX_Control_User_add] = {0};
+int s1 = 0;
+int s2 = 0;
 
 /* USER CODE END PV */
 
@@ -88,9 +95,12 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_TIM3_Init();
   MX_TIM4_Init();
+  MX_UART4_Init();
   /* USER CODE BEGIN 2 */
+  USART_DMAEx_MultiBuffer_Init(&huart4, (uint32_t*)control_rx_buf[0], (uint32_t*)control_rx_buf[1], RX_Control_User_add);
 
   /* USER CODE END 2 */
 
@@ -101,13 +111,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  Servo_Front_Init();
-	  Servo_Front_All_Up();
-	  Servo_Front_All_Down();
 	  
-	  Servo_Front_Single(Servo_Front_1, 60);
-	  Servo_360(Speed_Clockwise, Speed_Fast);
-	  Servo_Front_Deinit();
 
   }
   /* USER CODE END 3 */
@@ -160,6 +164,23 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+//void Serial_Init(UART_HandleTypeDef *huart, uint8_t *DstAddress, uint8_t *SecondMemAddress, uint32_t DataLength)
+//{
+//    huart->ReceptionType = HAL_UART_RECEPTION_TOIDLE;
+
+//    huart->RxEventType = HAL_UART_RXEVENT_IDLE;
+
+//    huart->RxXferSize = DataLength;
+
+//    SET_BIT(huart->Instance->CR3, USART_CR3_DMAR);
+
+
+//    __HAL_UART_ENABLE_IT(huart, UART_IT_IDLE);
+//	
+//    HAL_DMAEx_MultiBufferStart(huart->hdmarx, (uint32_t) &huart->Instance->DR, (uint32_t) DstAddress, (uint32_t) SecondMemAddress, DataLength);
+//}
+
 
 /* USER CODE END 4 */
 

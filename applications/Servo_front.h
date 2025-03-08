@@ -18,25 +18,25 @@ typedef enum
 
 typedef enum
 {
-	Servo_Front_1,
-	Servo_Front_2,
-	Servo_Front_3,
-	Servo_Front_4,
-	Servo_Front_5,
+	Servo_Front_1 = 0x01,
+	Servo_Front_2 = 0x02,
+	Servo_Front_3 = 0x03,
+	Servo_Front_4 = 0x04,
+	Servo_Front_5 = 0x05,
 	
 }Servo_Front_Num;
 
 typedef enum
 {
-	Speed_Fast,
-	Speed_Slow,
+	Speed_Fast = 0x00,
+	Speed_Slow = 0x01,
 	
 }Servo_360_Speed;
 
 typedef enum
 {
-	Speed_Clockwise,		//Ë³Ê±Õë
-	Speed_Anticlockwise,	//ÄæÊ±Õë
+	Speed_Clockwise = 0x00,		//Ë³Ê±Õë
+	Speed_Anticlockwise = 0x01,	//ÄæÊ±Õë
 	
 }Servo_360_Direction;
 

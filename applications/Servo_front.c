@@ -69,7 +69,7 @@ Servo_Front_State Servo_Front_All_Up(void)
 	__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_4, __Angle_to_PWM(Angle_Start));
 	__HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_1, __Angle_to_PWM(Angle_Start));
 	
-	HAL_Delay(delay);
+//	HAL_Delay(delay);
 	
 	return Servo_Front_OK;
 }
@@ -87,7 +87,7 @@ Servo_Front_State Servo_Front_All_Down(void)
 	__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_4, __Angle_to_PWM(Angle_End));
 	__HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_1, __Angle_to_PWM(Angle_End));
 	
-	HAL_Delay(delay);
+//	HAL_Delay(delay);
 	
 	return Servo_Front_OK;
 }
@@ -133,7 +133,7 @@ Servo_Front_State Servo_Front_Single(Servo_Front_Num Servo_Num, uint16_t angle)
     // 设置舵机角度
     __HAL_TIM_SetCompare(htim, TIM_Channel, __Angle_to_PWM(angle));
 	
-	HAL_Delay(delay);
+//	HAL_Delay(delay);
 
     // 舵机动作完成，返回成功状态
     return Servo_Front_OK;
@@ -177,7 +177,7 @@ Servo_Front_State Servo_360(Servo_360_Direction Direction, Servo_360_Speed Speed
 	
 	__HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_2, pwm);
 	
-	HAL_Delay(delay);
+//	HAL_Delay(delay);
 	
 	return Servo_Front_OK;	
 }

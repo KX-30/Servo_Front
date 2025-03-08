@@ -30,6 +30,10 @@ servo_front\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 servo_front\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 servo_front\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 servo_front\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+servo_front\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+servo_front\main.o: ../Core/Inc/dma.h
 servo_front\main.o: ../Core/Inc/tim.h
+servo_front\main.o: ../Core/Inc/usart.h
 servo_front\main.o: ../Core/Inc/gpio.h
 servo_front\main.o: ../applications/Servo_front.h
+servo_front\main.o: ../applications/Serial.h

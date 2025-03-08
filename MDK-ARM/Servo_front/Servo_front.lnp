@@ -2,7 +2,9 @@
 "servo_front\startup_stm32f407xx.o"
 "servo_front\main.o"
 "servo_front\gpio.o"
+"servo_front\dma.o"
 "servo_front\tim.o"
+"servo_front\usart.o"
 "servo_front\stm32f4xx_it.o"
 "servo_front\stm32f4xx_hal_msp.o"
 "servo_front\stm32f4xx_hal_tim.o"
@@ -20,8 +22,10 @@
 "servo_front\stm32f4xx_hal_cortex.o"
 "servo_front\stm32f4xx_hal.o"
 "servo_front\stm32f4xx_hal_exti.o"
+"servo_front\stm32f4xx_hal_uart.o"
 "servo_front\system_stm32f4xx.o"
 "servo_front\servo_front.o"
+"servo_front\serial.o"
 --strict --scatter "Servo_front\Servo_front.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
