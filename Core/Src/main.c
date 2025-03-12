@@ -50,8 +50,6 @@
 
 /* USER CODE BEGIN PV */
 volatile uint8_t control_rx_buf[2][RX_Control_User_add] = {0};
-int s1 = 0;
-int s2 = 0;
 
 /* USER CODE END PV */
 

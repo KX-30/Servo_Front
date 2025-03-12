@@ -3,11 +3,9 @@
 #include "Servo_front.h"
 
 extern UART_HandleTypeDef huart4;
-
-extern uint16_t s1;
-extern uint16_t s2;
-
 extern volatile uint8_t control_rx_buf[2][RX_Control_User];
+
+uint16_t buffer_index = 0;
 
 
 void USART_DMAEx_MultiBuffer_Init(UART_HandleTypeDef *huart, uint32_t *DstAddress, uint32_t *SecondMemAddress, uint32_t DataLength)
@@ -68,24 +66,20 @@ Serial_State __Data_Processing(volatile uint8_t control_rx_buf[])
 		if (control_rx_buf[1] == 0x00)
 		{
 			Servo_Front_All_Up();
-//			HAL_Delay(delay);
 		}
 		
 		else if (control_rx_buf[1] == 0x00)
 		{
 			Servo_Front_All_Down();
-//			HAL_Delay(delay);
 		}
 		
 		else if (control_rx_buf[1] == 0x00)
 		{
 			Servo_Front_Single((Servo_Front_Num)control_rx_buf[2], __bytes_to_uint16(control_rx_buf[3], control_rx_buf[4]));
-//			HAL_Delay(delay);
 		}
 		else if (control_rx_buf[1] == 0x00)
 		{
 			Servo_360((Servo_360_Direction)control_rx_buf[2], (Servo_360_Speed)control_rx_buf[3]);
-//			HAL_Delay(delay);
 		}
 		else
 			return Serial_ERROR;
@@ -110,8 +104,9 @@ void USER_USART4_RxHandler(UART_HandleTypeDef *huart, uint16_t Size)
 
         if(Size == RX_Control_User)
         {
-			s1++;
+			buffer_index = 0;
             __Data_Processing((uint8_t*)control_rx_buf[0]);
+			for (int i = 0; i < 10000; i++);
         }
     }
     else
@@ -124,8 +119,9 @@ void USER_USART4_RxHandler(UART_HandleTypeDef *huart, uint16_t Size)
 
         if(Size == RX_Control_User)
         {
-			s2++;
+			buffer_index = 1;
             __Data_Processing((uint8_t*)control_rx_buf[1]);
+			for (int i = 0; i < 10000; i++);
         }
     }
     __HAL_DMA_ENABLE(huart->hdmarx);

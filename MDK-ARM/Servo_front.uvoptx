@@ -163,12 +163,7 @@
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>s1,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>2</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>s2,0x0A</ItemText>
+          <ItemText>buffer_index,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

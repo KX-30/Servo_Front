@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Servo_front\Servo_front.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Servo_front\Servo_front.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sat Mar 08 23:10:15 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Thu Mar 13 00:13:22 2025
 <BR><P>
 <H3>Maximum Stack Usage =        176 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -785,7 +785,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[92]"></a>HAL_UARTEx_RxEventCallback</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, serial.o(i.HAL_UARTEx_RxEventCallback))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = HAL_UARTEx_RxEventCallback &rArr; USER_USART4_RxHandler &rArr; __Data_Processing &rArr; Servo_Front_Single
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = HAL_UARTEx_RxEventCallback &rArr; USER_USART4_RxHandler &rArr; __Data_Processing &rArr; Servo_Front_Single
 </UL>
 <BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USER_USART4_RxHandler
 </UL>
@@ -799,7 +799,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[94]"></a>HAL_UART_IRQHandler</STRONG> (Thumb, 618 bytes, Stack size 24 bytes, stm32f4xx_hal_uart.o(i.HAL_UART_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = HAL_UART_IRQHandler &rArr; UART_Receive_IT &rArr; HAL_UARTEx_RxEventCallback &rArr; USER_USART4_RxHandler &rArr; __Data_Processing &rArr; Servo_Front_Single
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = HAL_UART_IRQHandler &rArr; UART_Receive_IT &rArr; HAL_UARTEx_RxEventCallback &rArr; USER_USART4_RxHandler &rArr; __Data_Processing &rArr; Servo_Front_Single
 </UL>
 <BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Abort
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Abort_IT
@@ -978,7 +978,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[41]"></a>UART4_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.UART4_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = UART4_IRQHandler &rArr; HAL_UART_IRQHandler &rArr; UART_Receive_IT &rArr; HAL_UARTEx_RxEventCallback &rArr; USER_USART4_RxHandler &rArr; __Data_Processing &rArr; Servo_Front_Single
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = UART4_IRQHandler &rArr; HAL_UART_IRQHandler &rArr; UART_Receive_IT &rArr; HAL_UARTEx_RxEventCallback &rArr; USER_USART4_RxHandler &rArr; __Data_Processing &rArr; Servo_Front_Single
 </UL>
 <BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_IRQHandler
 </UL>
@@ -990,8 +990,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[93]"></a>USER_USART4_RxHandler</STRONG> (Thumb, 106 bytes, Stack size 8 bytes, serial.o(i.USER_USART4_RxHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = USER_USART4_RxHandler &rArr; __Data_Processing &rArr; Servo_Front_Single
+<P><STRONG><a name="[93]"></a>USER_USART4_RxHandler</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, serial.o(i.USER_USART4_RxHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = USER_USART4_RxHandler &rArr; __Data_Processing &rArr; Servo_Front_Single
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Data_Processing
 </UL>
@@ -1096,7 +1096,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[95]"></a>UART_Receive_IT</STRONG> (Thumb, 194 bytes, Stack size 8 bytes, stm32f4xx_hal_uart.o(i.UART_Receive_IT))
-<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = UART_Receive_IT &rArr; HAL_UARTEx_RxEventCallback &rArr; USER_USART4_RxHandler &rArr; __Data_Processing &rArr; Servo_Front_Single
+<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = UART_Receive_IT &rArr; HAL_UARTEx_RxEventCallback &rArr; USER_USART4_RxHandler &rArr; __Data_Processing &rArr; Servo_Front_Single
 </UL>
 <BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UARTEx_RxEventCallback
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_RxCpltCallback
