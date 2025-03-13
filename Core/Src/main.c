@@ -100,6 +100,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
   Servo_Front_Init();
   USART_DMAEx_MultiBuffer_Init(&huart4, (uint32_t*)control_rx_buf[0], (uint32_t*)control_rx_buf[1], RX_Control_User_add);
+  HAL_Delay(1000);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
 
   /* USER CODE END 2 */
 

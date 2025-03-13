@@ -147,32 +147,49 @@ Servo_Front_State Servo_Front_Single(Servo_Front_Num Servo_Num, uint16_t angle)
   */
 Servo_Front_State Servo_360(Servo_360_Direction Direction, Servo_360_Speed Speed)
 {
-	uint16_t pwm;
+	uint16_t pwm = 0;
 	
 	switch (Direction)
 	{
 		case Speed_Clockwise:
+		{
 			 switch(Speed)
 			 {
 				 case Speed_Fast:		//顺时针高速
 					 pwm = 50;
+					 break;
 				 case Speed_Slow:		//顺时针低速
 					 pwm = 100;
+					 break;
 				 default:
 					 pwm = 0;
 					 return Servo_Front_ERROR;
 			 }
+			 
+			 break;
+		 }
 		case Speed_Anticlockwise:
+		{
 			 switch(Speed)
 			 {
-				 case Speed_Fast:		//逆时针高速
+				 case Speed_Fast:					 //逆时针高速
 					 pwm = 150;
+					 break;
 				 case Speed_Slow:		//逆时针低速
 					 pwm = 200;
+					 break;
 				 default:
 					 pwm = 0;
 					 return Servo_Front_ERROR;
 			 }
+			 
+			 break;
+		 }
+		default:
+		{
+			pwm = 0;
+			return Servo_Front_ERROR;
+		}
 	}
 	
 	__HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_2, pwm);

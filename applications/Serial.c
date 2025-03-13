@@ -4,8 +4,9 @@
 
 extern UART_HandleTypeDef huart4;
 extern volatile uint8_t control_rx_buf[2][RX_Control_User_add];
-
+uint8_t mode;
 uint16_t buffer_index = 0;
+Servo_Front_State s;
 
 
 void USART_DMAEx_MultiBuffer_Init(UART_HandleTypeDef *huart, uint32_t *DstAddress, uint32_t *SecondMemAddress, uint32_t DataLength)
@@ -79,26 +80,34 @@ Serial_State __Data_Processing(volatile uint8_t control_rx_buf[])
 		if (control_rx_buf[1] == 0x00)
 		{
 			Servo_Front_All_Up();
+			mode = 0;
 		}
 		
 		else if (control_rx_buf[1] == 0x01)
 		{
 			Servo_Front_All_Down();
+			mode = 1;
 		}
 		
 		else if (control_rx_buf[1] == 0x02)
 		{
 			Servo_Front_Single((Servo_Front_Num)control_rx_buf[2], __bytes_to_uint16(control_rx_buf[3], control_rx_buf[4]));
+			mode = 2;
 		}
 		else if (control_rx_buf[1] == 0x03)
 		{
-			Servo_360((Servo_360_Direction)control_rx_buf[2], (Servo_360_Speed)control_rx_buf[3]);
+			s = Servo_360((Servo_360_Direction)control_rx_buf[2], (Servo_360_Speed)control_rx_buf[3]);
+			mode = 3;
 		}
 		else
+		{
+			mode = 4;
 			return Serial_ERROR;
+		}
 	}
 	else
 	{
+		mode = 4;
 		return Serial_ERROR;
 	}
 		
