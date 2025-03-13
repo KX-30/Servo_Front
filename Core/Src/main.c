@@ -98,6 +98,7 @@ int main(void)
   MX_TIM4_Init();
   MX_UART4_Init();
   /* USER CODE BEGIN 2 */
+  Servo_Front_Init();
   USART_DMAEx_MultiBuffer_Init(&huart4, (uint32_t*)control_rx_buf[0], (uint32_t*)control_rx_buf[1], RX_Control_User_add);
 
   /* USER CODE END 2 */

@@ -3,7 +3,7 @@
 #include "Servo_front.h"
 
 extern UART_HandleTypeDef huart4;
-extern volatile uint8_t control_rx_buf[2][RX_Control_User];
+extern volatile uint8_t control_rx_buf[2][RX_Control_User_add];
 
 uint16_t buffer_index = 0;
 
@@ -59,6 +59,19 @@ uint16_t __bytes_to_uint16(uint8_t byte1, uint8_t byte2)
     return ((uint16_t)byte1 << 8) | (uint16_t)byte2;
 }
 
+uint16_t __Buffer_is_Valid(uint8_t Buffer1[], uint8_t Buffer2[], uint16_t Size)
+{
+	for (int i = 0; i < Size; i++)
+	{
+		if (Buffer1[i] != Buffer2[i])
+		{
+			return 0;
+		}
+	}
+	
+	return 1;
+}
+
 Serial_State __Data_Processing(volatile uint8_t control_rx_buf[])
 {	
 	if ((control_rx_buf[0] == 0xFF) && (control_rx_buf[7] == 0x0F))
@@ -68,16 +81,16 @@ Serial_State __Data_Processing(volatile uint8_t control_rx_buf[])
 			Servo_Front_All_Up();
 		}
 		
-		else if (control_rx_buf[1] == 0x00)
+		else if (control_rx_buf[1] == 0x01)
 		{
 			Servo_Front_All_Down();
 		}
 		
-		else if (control_rx_buf[1] == 0x00)
+		else if (control_rx_buf[1] == 0x02)
 		{
 			Servo_Front_Single((Servo_Front_Num)control_rx_buf[2], __bytes_to_uint16(control_rx_buf[3], control_rx_buf[4]));
 		}
-		else if (control_rx_buf[1] == 0x00)
+		else if (control_rx_buf[1] == 0x03)
 		{
 			Servo_360((Servo_360_Direction)control_rx_buf[2], (Servo_360_Speed)control_rx_buf[3]);
 		}
@@ -102,11 +115,11 @@ void USER_USART4_RxHandler(UART_HandleTypeDef *huart, uint16_t Size)
 
         __HAL_DMA_SET_COUNTER(huart->hdmarx,RX_Control_User_add);
 
-        if(Size == RX_Control_User)
+        if((Size == RX_Control_User) && __Buffer_is_Valid((uint8_t*)control_rx_buf[0], (uint8_t*)control_rx_buf[1], RX_Control_User_add))
         {
 			buffer_index = 0;
             __Data_Processing((uint8_t*)control_rx_buf[0]);
-			for (int i = 0; i < 10000; i++);
+//			for (int i = 0; i < 10000; i++);
         }
     }
     else
@@ -117,11 +130,11 @@ void USER_USART4_RxHandler(UART_HandleTypeDef *huart, uint16_t Size)
 
         __HAL_DMA_SET_COUNTER(huart->hdmarx,RX_Control_User_add);
 
-        if(Size == RX_Control_User)
+        if((Size == RX_Control_User) && __Buffer_is_Valid((uint8_t*)control_rx_buf[0], (uint8_t*)control_rx_buf[1], RX_Control_User_add))
         {
 			buffer_index = 1;
             __Data_Processing((uint8_t*)control_rx_buf[1]);
-			for (int i = 0; i < 10000; i++);
+//			for (int i = 0; i < 10000; i++);
         }
     }
     __HAL_DMA_ENABLE(huart->hdmarx);
@@ -138,5 +151,6 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 //void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 //{	
 //}
+
 
 
